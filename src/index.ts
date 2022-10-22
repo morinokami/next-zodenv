@@ -1,3 +1,2 @@
-export function add(a: number, b: number): number {
-  return a + b
-}
+export * from './errors'
+export * from './zenv'
