@@ -2,11 +2,23 @@
   "name": "next-zodenv",
   "version": "0.0.1",
   "description": "Safe environment variables for Next.js",
-  "main": "index.js",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
   "author": "Shinya Fujino <shf0811@gamil.com> (https://github.com/morinokami)",
-  "license": "MIT"
+  "license": "MIT",
+  "type": "module",
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^5.40.1",
+    "@typescript-eslint/parser": "^5.40.1",
+    "eslint": "^8.26.0",
+    "prettier": "^2.7.1",
+    "typescript": "^4.8.4"
+  }
 }
