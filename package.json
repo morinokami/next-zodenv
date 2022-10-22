@@ -1,7 +1,7 @@
 {
   "name": "next-zodenv",
   "version": "0.0.1",
-  "description": "Safe environment variables for Next.js",
+  "description": "Safe environment variables for Next.js, powered by Zod",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "files": [
