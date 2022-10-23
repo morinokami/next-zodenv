@@ -19,6 +19,7 @@ const Home: NextPage = () => {
           {<pre>{JSON.stringify(publicEnv, null, 4)}</pre>}
         </code>
         <p>
+          {/* eslint-disable-next-line @next/next/no-html-link-for-pages */}
           <a href="/api/hello">Server environment</a>
         </p>
       </main>

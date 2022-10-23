@@ -1,7 +1,7 @@
-import { zenv } from 'next-zodenv'
-import { z } from 'zod'
+const { zenv } = require('next-zodenv')
+const { z } = require('zod')
 
-export const publicEnv = zenv(
+module.exports.publicEnv = zenv(
   z.object({
     NEXT_PUBLIC_BAR: z.string(),
   }),
