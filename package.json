@@ -1,25 +1,34 @@
 {
   "name": "next-zodenv",
   "version": "0.0.1",
+  "author": "Shinya Fujino <shf0811@gamil.com> (https://github.com/morinokami)",
   "description": "Safe environment variables for Next.js, powered by Zod",
-  "main": "dist/index.js",
-  "types": "dist/index.d.ts",
-  "files": [
-    "dist"
-  ],
-  "scripts": {
-    "test": "jest",
-    "test:watch": "jest --watch"
-  },
   "keywords": [
     "react",
     "nextjs",
     "zod",
     "env"
   ],
-  "author": "Shinya Fujino <shf0811@gamil.com> (https://github.com/morinokami)",
   "license": "MIT",
   "type": "module",
+  "main": "dist/cjs/index.js",
+  "types": "dist/types/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/esm/index.js",
+      "require": "./dist/cjs/index.js"
+    },
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "postbuild": "tsc --module commonjs --outDir dist/cjs",
+    "test": "jest",
+    "test:watch": "jest --watch"
+  },
   "devDependencies": {
     "@types/jest": "^29.2.0",
     "@types/node": "^18.11.3",
