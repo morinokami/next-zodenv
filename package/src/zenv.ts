@@ -6,7 +6,7 @@ import { ZenvOptions, ZodErrors } from './types'
 export function zenv<EnvVar extends z.ZodRawShape>(
   validators: z.ZodObject<EnvVar>,
   {
-    nextPublic = false,
+    nextPublic = {},
     env = process.env,
     reporter = defaultReporter,
   }: ZenvOptions = {},
@@ -18,7 +18,7 @@ export function zenv<EnvVar extends z.ZodRawShape>(
   for (const key in validators.shape) {
     const validator = validators.shape[key]
     try {
-      const value = env[nextPublic ? `NEXT_PUBLIC_${key}` : key]
+      const value = key in nextPublic ? nextPublic[key] : env[key]
       // eslint-disable-next-line @typescript-eslint/ban-ts-comment
       // @ts-ignore
       result[key] = validator.parse(value)
