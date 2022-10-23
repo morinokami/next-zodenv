@@ -5,6 +5,7 @@
     "example"
   ],
   "scripts": {
+    "dev": "npm run dev --workspace=package",
     "build": "npm run build --workspace=package",
     "test": "npm run test --workspace=package",
     "test:watch": "npm run test:watch --workspace=package",

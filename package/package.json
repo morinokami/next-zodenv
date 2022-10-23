@@ -24,6 +24,7 @@
     "dist"
   ],
   "scripts": {
+    "dev": "tsc --watch",
     "build": "tsc",
     "postbuild": "tsc --module commonjs --outDir dist/cjs",
     "test": "jest",
