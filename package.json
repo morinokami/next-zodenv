@@ -1,54 +1,23 @@
 {
-  "name": "next-zodenv",
-  "version": "0.0.1",
-  "author": "Shinya Fujino <shf0811@gamil.com> (https://github.com/morinokami)",
-  "description": "Safe environment variables for Next.js, powered by Zod",
-  "keywords": [
-    "react",
-    "nextjs",
-    "zod",
-    "env"
-  ],
-  "license": "MIT",
-  "type": "module",
-  "main": "dist/cjs/index.js",
-  "types": "dist/types/index.d.ts",
-  "exports": {
-    ".": {
-      "import": "./dist/esm/index.js",
-      "require": "./dist/cjs/index.js"
-    },
-    "./package.json": "./package.json"
-  },
-  "files": [
-    "dist"
+  "name": "next-zodenv-workspaces",
+  "workspaces": [
+    "package",
+    "example"
   ],
   "scripts": {
-    "build": "tsc",
-    "postbuild": "tsc --module commonjs --outDir dist/cjs",
-    "test": "jest",
-    "test:watch": "jest --watch"
+    "build": "npm run build --workspace=package",
+    "test": "npm run test --workspace=package",
+    "test:watch": "npm run test:watch --workspace=package"
   },
   "devDependencies": {
-    "@types/jest": "^29.2.0",
-    "@types/node": "^18.11.3",
-    "@typescript-eslint/eslint-plugin": "^5.40.1",
-    "@typescript-eslint/parser": "^5.40.1",
-    "eslint": "^8.26.0",
-    "eslint-plugin-simple-import-sort": "^8.0.0",
-    "jest": "^29.2.1",
     "lint-staged": "^13.0.3",
-    "prettier": "^2.7.1",
-    "simple-git-hooks": "^2.8.1",
-    "ts-jest": "^29.0.3",
-    "typescript": "^4.8.4",
-    "zod": "^3.19.1"
+    "simple-git-hooks": "^2.8.1"
   },
   "simple-git-hooks": {
     "pre-commit": "npx lint-staged"
   },
   "lint-staged": {
-    "*.ts": [
+    "package/**/*.ts": [
       "eslint --fix",
       "prettier --write"
     ]
