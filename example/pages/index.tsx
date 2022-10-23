@@ -14,12 +14,10 @@ const Home: NextPage = () => {
       </Head>
 
       <main className={styles.main}>
-        <p>
-          <code>
-            Client environment:{' '}
-            {<pre>{JSON.stringify(publicEnv, null, 4)}</pre>}
-          </code>
-        </p>
+        <code>
+          Client environment:{' '}
+          {<pre>{JSON.stringify(publicEnv, null, 4)}</pre>}
+        </code>
         <p>
           <a href="/api/hello">Server environment</a>
         </p>
