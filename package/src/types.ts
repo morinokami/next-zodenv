@@ -1,6 +1,6 @@
-import { ZodError } from 'zod'
+import { ZodIssue } from 'zod'
 
-export type ZodErrors = Record<string, ZodError>
+export type ZodErrors = Record<string, ZodIssue[]>
 
 export type ZenvOptions = {
   nextPublic?: Record<string, unknown>

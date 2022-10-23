@@ -1,4 +1,4 @@
-import { z, ZodError } from 'zod'
+import { z } from 'zod'
 
 import { defaultReporter } from './reporter'
 import { ZenvOptions, ZodErrors } from './types'
@@ -17,13 +17,14 @@ export function zenv<EnvVar extends z.ZodRawShape>(
   // Validate environment variables
   for (const key in validators.shape) {
     const validator = validators.shape[key]
-    try {
-      const value = key in nextPublic ? nextPublic[key] : env[key]
+    const value = nextPublic[key] ?? env[key]
+    const resolved = validator.safeParse(value)
+    if (resolved.success) {
       // eslint-disable-next-line @typescript-eslint/ban-ts-comment
       // @ts-ignore
-      result[key] = validator.parse(value)
-    } catch (error) {
-      errors[key] = error as ZodError
+      result[key] = resolved.data
+    } else {
+      errors[key] = resolved.error.issues
     }
   }
 

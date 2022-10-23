@@ -50,7 +50,7 @@ describe('zenv', () => {
         }),
         { env: EnvSchema },
       ),
-    ).toThrowError()
+    ).toThrowError(TypeError)
 
     console.error = originalError
   })
@@ -67,11 +67,11 @@ describe('zenv', () => {
       zenv(
         z.object({
           FOO: z.string(),
-          BAR: z.number(),
+          BAR: z.preprocess(Number, z.number()),
         }),
         { env: EnvSchema },
       ),
-    ).toThrowError()
+    ).toThrowError(TypeError)
 
     console.error = originalError
   })
