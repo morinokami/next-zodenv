@@ -12,11 +12,13 @@
     "test:watch": "npm run test:watch --workspace=next-zodenv",
     "example:dev": "npm run dev --workspace=example",
     "example:build": "npm run build --workspace=example",
-    "example:start": "npm run start --workspace=example"
+    "example:start": "npm run start --workspace=example",
+    "lint": "turbo run lint"
   },
   "devDependencies": {
     "lint-staged": "^13.0.3",
-    "simple-git-hooks": "^2.8.1"
+    "simple-git-hooks": "^2.8.1",
+    "turbo": "^1.6.1"
   },
   "simple-git-hooks": {
     "pre-commit": "npx lint-staged"

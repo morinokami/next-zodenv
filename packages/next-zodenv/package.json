@@ -27,7 +27,8 @@
     "build": "tsc",
     "postbuild": "tsc --module commonjs --outDir dist/cjs",
     "test": "jest",
-    "test:watch": "jest --watch"
+    "test:watch": "jest --watch",
+    "lint": "tsc --noEmit && eslint src/**/*.ts"
   },
   "dependencies": {
     "zod": "^3.19.1"
@@ -42,6 +43,7 @@
     "jest": "^29.2.1",
     "prettier": "^2.7.1",
     "ts-jest": "^29.0.3",
+    "tsconfig": "*",
     "typescript": "^4.8.4"
   }
 }
