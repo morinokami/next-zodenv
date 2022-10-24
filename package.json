@@ -2,14 +2,14 @@
   "name": "next-zodenv-workspaces",
   "license": "MIT",
   "workspaces": [
-    "package",
-    "example"
+    "packages/*",
+    "examples/*"
   ],
   "scripts": {
-    "dev": "npm run dev --workspace=package",
-    "build": "npm run build --workspace=package",
-    "test": "npm run test --workspace=package",
-    "test:watch": "npm run test:watch --workspace=package",
+    "dev": "npm run dev --workspace=next-zodenv",
+    "build": "npm run build --workspace=next-zodenv",
+    "test": "npm run test --workspace=next-zodenv",
+    "test:watch": "npm run test:watch --workspace=next-zodenv",
     "example:dev": "npm run dev --workspace=example"
   },
   "devDependencies": {
