@@ -10,8 +10,8 @@ export function zenv<EnvVar extends z.ZodRawShape>(
     env = process.env,
     reporter = defaultReporter,
   }: ZenvOptions = {},
-): z.infer<z.ZodObject<EnvVar>> {
-  const result = {} as z.infer<z.ZodObject<EnvVar>>
+): z.infer<typeof validators> {
+  const result = {} as z.infer<typeof validators>
   const errors: ZodErrors = {}
 
   // Validate environment variables

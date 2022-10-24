@@ -11,7 +11,7 @@ describe('zenv', () => {
     const env = zenv(
       z.object({
         FOO: z.string(),
-        BAR: z.string().transform((val) => Number(val)),
+        BAR: z.preprocess(Number, z.number()),
       }),
       { env: EnvSchema },
     )
@@ -25,7 +25,7 @@ describe('zenv', () => {
     const env = zenv(
       z.object({
         NEXT_PUBLIC_FOO: z.string(),
-        NEXT_PUBLIC_BAR: z.string().transform((val) => Number(val)),
+        NEXT_PUBLIC_BAR: z.preprocess(Number, z.number()),
       }),
       { nextPublic: { NEXT_PUBLIC_FOO: 'foo', NEXT_PUBLIC_BAR: '888' } },
     )
