@@ -10,7 +10,9 @@
     "build": "npm run build --workspace=next-zodenv",
     "test": "npm run test --workspace=next-zodenv",
     "test:watch": "npm run test:watch --workspace=next-zodenv",
-    "example:dev": "npm run dev --workspace=example"
+    "example:dev": "npm run dev --workspace=example",
+    "example:build": "npm run build --workspace=example",
+    "example:start": "npm run start --workspace=example"
   },
   "devDependencies": {
     "lint-staged": "^13.0.3",
@@ -20,7 +22,7 @@
     "pre-commit": "npx lint-staged"
   },
   "lint-staged": {
-    "package/**/*.ts": [
+    "packages/**/*.ts": [
       "eslint --fix",
       "prettier --write"
     ]
