@@ -6,14 +6,13 @@
     "examples/*"
   ],
   "scripts": {
-    "dev": "npm run dev --workspace=next-zodenv",
-    "build": "npm run build --workspace=next-zodenv",
-    "test": "npm run test --workspace=next-zodenv",
-    "test:watch": "npm run test:watch --workspace=next-zodenv",
-    "example:dev": "npm run dev --workspace=example",
-    "example:build": "npm run build --workspace=example",
-    "example:start": "npm run start --workspace=example",
-    "lint": "turbo run lint"
+    "build": "turbo run build --filter next-zodenv",
+    "build:pararell": "turbo run build",
+    "lint": "turbo run lint",
+    "test": "turbo run test",
+    "test:watch": "turbo run test:watch",
+    "dev": "turbo run dev",
+    "example:start": "turbo run start"
   },
   "devDependencies": {
     "lint-staged": "^13.0.3",

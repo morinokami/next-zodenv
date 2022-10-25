@@ -23,7 +23,7 @@
     "dist"
   ],
   "scripts": {
-    "dev": "tsc --watch",
+    "dev": "tsc --watch --module commonjs --outDir dist/cjs",
     "build": "tsc",
     "postbuild": "tsc --module commonjs --outDir dist/cjs",
     "test": "jest",
