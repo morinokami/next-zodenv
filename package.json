@@ -2,25 +2,28 @@
   "name": "next-zodenv-workspaces",
   "license": "MIT",
   "workspaces": [
-    "package",
-    "example"
+    "packages/*",
+    "examples/*"
   ],
   "scripts": {
-    "dev": "npm run dev --workspace=package",
-    "build": "npm run build --workspace=package",
-    "test": "npm run test --workspace=package",
-    "test:watch": "npm run test:watch --workspace=package",
-    "example:dev": "npm run dev --workspace=example"
+    "build": "turbo run build --filter next-zodenv",
+    "build:pararell": "turbo run build",
+    "lint": "turbo run lint",
+    "test": "turbo run test",
+    "test:watch": "turbo run test:watch",
+    "dev": "turbo run dev",
+    "example:start": "turbo run start"
   },
   "devDependencies": {
     "lint-staged": "^13.0.3",
-    "simple-git-hooks": "^2.8.1"
+    "simple-git-hooks": "^2.8.1",
+    "turbo": "^1.6.1"
   },
   "simple-git-hooks": {
     "pre-commit": "npx lint-staged"
   },
   "lint-staged": {
-    "package/**/*.ts": [
+    "packages/**/*.ts": [
       "eslint --fix",
       "prettier --write"
     ]

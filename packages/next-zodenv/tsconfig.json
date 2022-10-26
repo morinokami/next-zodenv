@@ -1,0 +1,14 @@
+{
+  "extends": "tsconfig/next-zodenv.json",
+  "include": [
+    "src/**/*"
+  ],
+  "exclude": [
+    "dist"
+  ],
+  "compilerOptions": {
+    "rootDir": "./src",
+    "outDir": "./dist/esm",
+    "declarationDir": "./dist/types",
+  }
+}
