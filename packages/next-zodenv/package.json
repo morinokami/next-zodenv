@@ -24,8 +24,7 @@
   ],
   "scripts": {
     "dev": "tsc --watch --module commonjs --outDir dist/cjs",
-    "build": "tsc",
-    "postbuild": "tsc --module commonjs --outDir dist/cjs",
+    "build": "tsc && tsc --module commonjs --outDir dist/cjs",
     "test": "jest",
     "test:watch": "jest --watch",
     "lint": "tsc --noEmit && eslint src/**/*.ts"
