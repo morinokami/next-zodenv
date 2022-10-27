@@ -5,9 +5,8 @@ next-zodenv makes dealing with environment variables in [Next.js](https://nextjs
 Here are the basic ideas of next-zodenv:
 
 * 💎 Express environment variables declaratively using Zod
-* ✅ Validate that the specified environment variables are not missing
+* ✅ Validate that the specified environment variables are not missing on build time
 * 🪄 Transform environment variables to the type your application expects
-* 🌀 Make sure environment variables are fully typed
 * 🤝 Work on Node.js and the browser
 
 ## Setup
