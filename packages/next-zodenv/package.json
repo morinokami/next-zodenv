@@ -10,12 +10,12 @@
     "env"
   ],
   "license": "MIT",
-  "main": "dist/cjs/index.js",
-  "types": "dist/types/index.d.ts",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "exports": {
     ".": {
-      "import": "./dist/esm/index.js",
-      "require": "./dist/cjs/index.js"
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.js"
     },
     "./package.json": "./package.json"
   },
@@ -23,8 +23,8 @@
     "dist"
   ],
   "scripts": {
-    "dev": "tsc --watch --module commonjs --outDir dist/cjs",
-    "build": "tsc && tsc --module commonjs --outDir dist/cjs",
+    "dev": "npm run build -- --watch src",
+    "build": "tsup src/index.ts --format cjs,esm --dts",
     "test": "jest",
     "test:watch": "jest --watch",
     "lint": "tsc --noEmit && eslint src/**/*.ts"
@@ -43,6 +43,7 @@
     "prettier": "^2.7.1",
     "ts-jest": "^29.0.3",
     "tsconfig": "*",
+    "tsup": "^6.3.0",
     "typescript": "^4.8.4"
   }
 }
