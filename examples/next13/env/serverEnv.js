@@ -7,5 +7,7 @@ module.exports.serverEnv = {
   ...publicEnv,
   ...zenv(z.object({
     FOO: z.string(),
+    PORT: z.preprocess(Number, z.number()),
+    API_URL: z.string().url(),
   })),
 }
