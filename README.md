@@ -17,6 +17,17 @@ npm install next-zodenv
 
 ## Usage
 
+Suppose that you have the following environment variables:
+
+```
+FOO="server_only_variable"
+PORT=3000
+API_URL="https://example.com/api"
+NEXT_PUBLIC_VAR="public_variable"
+```
+
+You can define a schema for your environment variables:
+
 ```ts
 const env = zenv(z.object({
   FOO: z.string(),
@@ -31,7 +42,7 @@ env.API_URL // string (URL)
 
 Note that types other than string must be transformed with `z.preprocess` beforehand. This is because environment variables are always string and we need to transform them to the type Zod's schema expects.
 
-## Next.js
+### Next.js
 
 In order to expose environment variables to the browser in Next.js, you need to pass the `nextPublic` option to `zenv` like this:
 
