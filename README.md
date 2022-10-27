@@ -60,3 +60,12 @@ const env = zenv(
 
 env.NEXT_PUBLIC_VAR // available in the browser
 ```
+
+To validate on build time and stop the build process if there are missing environment variables, load your schema in `next.config.js`:
+
+```ts
+// next.config.js
+const { env } = require('./env/server.js');
+
+// ...
+```
