@@ -6,8 +6,11 @@
   "keywords": [
     "react",
     "nextjs",
+    "nodejs",
+    "typescript",
     "zod",
-    "env"
+    "env",
+    "environment-variables"
   ],
   "license": "MIT",
   "main": "dist/index.js",
