@@ -12,7 +12,7 @@ Here are the basic ideas of next-zodenv:
 ## Setup
 
 ```sh
-npm install next-zodenv
+npm install next-zodenv zod
 ```
 
 ## Usage
@@ -38,9 +38,10 @@ const env = zenv(z.object({
   API_URL: z.string().url(),
 }))
 
-env.FOO     // string
-env.PORT    // number (1-65535)
-env.API_URL // string (URL)
+env.FOO             // string
+env.PORT            // number (1-65535)
+env.API_URL         // string (URL)
+env.NEXT_PUBLIC_VAR // undefined
 ```
 
 Note that types other than string must be transformed with `z.preprocess` beforehand. This is because environment variables are always string and we need to transform them to the type Zod's schema expects.
