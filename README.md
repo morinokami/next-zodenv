@@ -45,7 +45,7 @@ env.API_URL // string (URL)
 
 Note that types other than string must be transformed with `z.preprocess` beforehand. This is because environment variables are always string and we need to transform them to the type Zod's schema expects.
 
-For simple cases like the above, next-zodenv offers built-in validators:
+For simple cases like the above, next-zodenv offers built-in validators defined using Zod's constructs:
 
 ```ts
 import { zenv, str, port, url } from 'next-zodenv'
@@ -57,6 +57,8 @@ const env = zenv(z.object({
   API_URL: url(),
 }))
 ```
+
+The complete list of built-in validators is as follows:
 
 Validator | Zod schema
 --- | ---
