@@ -1,6 +1,6 @@
 import { z } from 'zod'
 
-import { zenv } from '../src'
+import { num, str, zenv } from '../src'
 
 describe('zenv', () => {
   test('validate and transform environment variables', () => {
@@ -10,8 +10,8 @@ describe('zenv', () => {
     }
     const env = zenv(
       z.object({
-        FOO: z.string(),
-        BAR: z.preprocess(Number, z.number()),
+        FOO: str(),
+        BAR: num(),
       }),
       { env: EnvSchema },
     )
@@ -24,8 +24,8 @@ describe('zenv', () => {
   test('validate and transform public environment variables', () => {
     const env = zenv(
       z.object({
-        NEXT_PUBLIC_FOO: z.string(),
-        NEXT_PUBLIC_BAR: z.preprocess(Number, z.number()),
+        NEXT_PUBLIC_FOO: str(),
+        NEXT_PUBLIC_BAR: num(),
       }),
       { nextPublic: { NEXT_PUBLIC_FOO: 'foo', NEXT_PUBLIC_BAR: '888' } },
     )
@@ -45,8 +45,8 @@ describe('zenv', () => {
     expect(() =>
       zenv(
         z.object({
-          FOO: z.string(),
-          BAR: z.string(),
+          FOO: str(),
+          BAR: str(),
         }),
         { env: EnvSchema },
       ),
@@ -66,8 +66,8 @@ describe('zenv', () => {
     expect(() =>
       zenv(
         z.object({
-          FOO: z.string(),
-          BAR: z.preprocess(Number, z.number()),
+          FOO: str(),
+          BAR: num(),
         }),
         { env: EnvSchema },
       ),
