@@ -12,7 +12,7 @@ Here are the basic ideas of next-zodenv:
 ## Setup
 
 ```sh
-npm install next-zodenv
+npm install next-zodenv zod
 ```
 
 ## Usage
@@ -29,18 +29,46 @@ NEXT_PUBLIC_VAR="public_variable"
 You can define a schema for your environment variables:
 
 ```ts
+import { zenv } from 'next-zodenv'
+import { z } from 'zod'
+
 const env = zenv(z.object({
   FOO: z.string(),
   PORT: z.preprocess(Number, z.number().int().gte(1).lte(65535)),
   API_URL: z.string().url(),
 }))
 
-env.FOO     // string
-env.PORT    // number (1-65535)
-env.API_URL // string (URL)
+env.FOO             // string
+env.PORT            // number (1-65535)
+env.API_URL         // string (URL)
+env.NEXT_PUBLIC_VAR // undefined
 ```
 
 Note that types other than string must be transformed with `z.preprocess` beforehand. This is because environment variables are always string and we need to transform them to the type Zod's schema expects.
+
+For simple cases like the above, next-zodenv offers built-in validators defined using Zod's constructs:
+
+```ts
+import { zenv, str, port, url } from 'next-zodenv'
+import { z } from 'zod'
+
+const env = zenv(z.object({
+  FOO: str(),
+  PORT: port(),
+  API_URL: url(),
+}))
+```
+
+The complete list of built-in validators is as follows:
+
+Validator | Zod schema
+--- | ---
+`str()` | `z.string()` 
+`bool()` | `z.preprocess((val) => val === 'true', z.boolean())`
+`num()` | `z.preprocess(Number, z.number())`
+`port()` | `z.preprocess(Number, z.number().int().min(1).max(65535))`
+`url()` | `z.string().url()`
+`email()` | `z.string().email()`
 
 ### Next.js
 
