@@ -6,19 +6,19 @@
     "examples/*"
   ],
   "scripts": {
-    "build": "turbo run build --filter=next-zodenv",
-    "build:pararell": "turbo run build --filter=!should-fail",
+    "build": "turbo run build",
+    "build:all": "turbo run build-example --filter=!should-fail",
     "lint": "turbo run lint --filter=!should-fail",
     "test": "turbo run test",
     "test:watch": "turbo run test:watch",
     "dev": "turbo run dev --filter=!should-fail",
     "examples:start": "turbo run start --filter=!should-fail",
-    "should-fail": "turbo run build --filter=next-zodenv --filter=should-fail"
+    "should-fail": "turbo run build-example --filter=should-fail"
   },
   "devDependencies": {
     "lint-staged": "^13.0.3",
     "simple-git-hooks": "^2.8.1",
-    "turbo": "^1.6.1"
+    "turbo": "^1.6.2"
   },
   "simple-git-hooks": {
     "pre-commit": "npx lint-staged"
