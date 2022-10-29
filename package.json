@@ -12,6 +12,7 @@
     "test": "turbo run test",
     "test:watch": "turbo run test:watch",
     "dev": "turbo run dev --filter=!should-fail",
+    "release": "turbo run build lint test --filter=next-zodenv && cd ./packages/next-zodenv && npm run release",
     "examples:start": "turbo run start --filter=!should-fail",
     "should-fail": "turbo run build-example --filter=should-fail"
   },
