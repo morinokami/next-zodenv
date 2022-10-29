@@ -44,7 +44,7 @@ env.API_URL         // string (URL)
 env.NEXT_PUBLIC_VAR // undefined
 ```
 
-Note that types other than string must be transformed with `z.preprocess` beforehand. This is because environment variables are always string and we need to transform them to the type Zod's schema expects.
+Note that types other than string must be transformed with [`z.preprocess`](https://github.com/colinhacks/zod#preprocess) beforehand. This is because environment variables are always string and we need to transform them to the type Zod's schema expects.
 
 For simple cases like the above, next-zodenv offers built-in validators defined using Zod's constructs:
 
@@ -72,7 +72,7 @@ Validator | Zod schema
 
 ### Next.js
 
-In order to expose environment variables to the browser in Next.js, you need to pass the `nextPublic` option to `zenv` like this:
+In order to expose environment variables to the browser in Next.js, you need to pass the `nextPublic` property to `zenv` like this:
 
 ```ts
 const env = zenv(
