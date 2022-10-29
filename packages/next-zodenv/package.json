@@ -3,6 +3,7 @@
   "version": "0.0.1",
   "author": "Shinya Fujino <shf0811@gamil.com> (https://github.com/morinokami)",
   "description": "Safe environment variables for Next.js, powered by Zod",
+  "license": "MIT",
   "keywords": [
     "react",
     "nextjs",
@@ -12,7 +13,10 @@
     "env",
     "environment-variables"
   ],
-  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/morinokami/next-zodenv"
+  },
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "exports": {
