@@ -1,0 +1,6 @@
+{
+  "extends": "tsconfig/next-zodenv.json",
+  "compilerOptions": {
+    "module": "commonjs",
+  }
+}
