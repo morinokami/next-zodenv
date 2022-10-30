@@ -1,21 +1,22 @@
+import { z } from 'zod'
+
 import { defaultReporter } from './reporter'
 import { ParsedSchema, Schema, ZenvOptions, ZodErrors } from './types'
 
-export function zenv<Validators extends Schema>(
-  validators: Validators,
-  {
-    nextPublic = {},
-    env = process.env,
-    reporter = defaultReporter,
-  }: ZenvOptions = {},
-): ParsedSchema<Validators> {
+export function zenv<S extends Schema>(
+  schema: S,
+  { env = process.env, reporter = defaultReporter }: ZenvOptions = {},
+): ParsedSchema<S> {
   const result = {} as Record<string, unknown>
   const errors: ZodErrors = {}
 
   // Validate environment variables
-  for (const [key, validator] of Object.entries(validators)) {
-    const value = nextPublic[key] ?? env[key]
-    const resolved = validator.safeParse(value)
+  for (const [key, entry] of Object.entries(schema)) {
+    const value = entry instanceof z.ZodType ? env[key] : entry.value
+    const resolved =
+      entry instanceof z.ZodType
+        ? entry.safeParse(value)
+        : entry.zodType.safeParse(value)
     if (resolved.success) {
       result[key] = resolved.data
     } else {
@@ -28,5 +29,5 @@ export function zenv<Validators extends Schema>(
     reporter(errors)
   }
 
-  return result as ParsedSchema<Validators>
+  return result as ParsedSchema<S>
 }

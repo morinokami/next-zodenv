@@ -3,11 +3,9 @@ const { z } = require('zod')
 
 module.exports.publicEnv = zenv(
   {
-    NEXT_PUBLIC_VAR: z.string(),
-  },
-  {
-    nextPublic: {
-      NEXT_PUBLIC_VAR: process.env.NEXT_PUBLIC_VAR,
-    }
+    NEXT_PUBLIC_VAR: {
+      zodType: z.string(),
+      value: process.env.NEXT_PUBLIC_VAR
+    },
   },
 )
