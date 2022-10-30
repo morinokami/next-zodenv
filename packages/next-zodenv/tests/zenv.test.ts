@@ -1,5 +1,3 @@
-import { z } from 'zod'
-
 import { num, str, zenv } from '../src'
 
 describe('zenv', () => {
@@ -9,10 +7,10 @@ describe('zenv', () => {
       BAR: '888',
     }
     const env = zenv(
-      z.object({
+      {
         FOO: str(),
         BAR: num(),
-      }),
+      },
       { env: EnvSchema },
     )
     expect(env).toStrictEqual({
@@ -23,10 +21,10 @@ describe('zenv', () => {
 
   test('validate and transform public environment variables', () => {
     const env = zenv(
-      z.object({
+      {
         NEXT_PUBLIC_FOO: str(),
         NEXT_PUBLIC_BAR: num(),
-      }),
+      },
       { nextPublic: { NEXT_PUBLIC_FOO: 'foo', NEXT_PUBLIC_BAR: '888' } },
     )
     expect(env).toStrictEqual({
@@ -44,10 +42,10 @@ describe('zenv', () => {
     }
     expect(() =>
       zenv(
-        z.object({
+        {
           FOO: str(),
           BAR: str(),
-        }),
+        },
         { env: EnvSchema },
       ),
     ).toThrowError(TypeError)
@@ -65,10 +63,10 @@ describe('zenv', () => {
     }
     expect(() =>
       zenv(
-        z.object({
+        {
           FOO: str(),
           BAR: num(),
-        }),
+        },
         { env: EnvSchema },
       ),
     ).toThrowError(TypeError)

@@ -1,27 +1,22 @@
-import { z } from 'zod'
-
 import { defaultReporter } from './reporter'
-import { ZenvOptions, ZodErrors } from './types'
+import { ParsedSchema, Schema, ZenvOptions, ZodErrors } from './types'
 
-export function zenv<EnvVar extends z.ZodRawShape>(
-  validators: z.ZodObject<EnvVar>,
+export function zenv<Validators extends Schema>(
+  validators: Validators,
   {
     nextPublic = {},
     env = process.env,
     reporter = defaultReporter,
   }: ZenvOptions = {},
-): z.infer<typeof validators> {
-  const result = {} as z.infer<typeof validators>
+): ParsedSchema<Validators> {
+  const result = {} as Record<string, unknown>
   const errors: ZodErrors = {}
 
   // Validate environment variables
-  for (const key in validators.shape) {
-    const validator = validators.shape[key]
+  for (const [key, validator] of Object.entries(validators)) {
     const value = nextPublic[key] ?? env[key]
     const resolved = validator.safeParse(value)
     if (resolved.success) {
-      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-      // @ts-ignore
       result[key] = resolved.data
     } else {
       errors[key] = resolved.error.issues
@@ -33,5 +28,5 @@ export function zenv<EnvVar extends z.ZodRawShape>(
     reporter(errors)
   }
 
-  return result
+  return result as ParsedSchema<Validators>
 }
