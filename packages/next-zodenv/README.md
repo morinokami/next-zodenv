@@ -71,17 +71,15 @@ Validator | Zod schema
 
 ### Next.js
 
-In order to expose environment variables to the browser in Next.js, you need to pass the `nextPublic` option to `zenv` like this:
+In order to expose environment variables to the browser in Next.js, you need to pass `process.env.NEXT_PUBLIC_*` to the `value` prop like this:
 
 ```ts
 const env = zenv(
   {
-    NEXT_PUBLIC_VAR: z.string(),
-  },
-  {
-    nextPublic: {
-      NEXT_PUBLIC_VAR: process.env.NEXT_PUBLIC_VAR,
-    }
+    NEXT_PUBLIC_VAR: {
+      zodType: z.string(),
+      value: process.env.NEXT_PUBLIC_VAR,
+    },
   },
 )
 

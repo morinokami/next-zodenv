@@ -20,13 +20,10 @@ describe('zenv', () => {
   })
 
   test('validate and transform public environment variables', () => {
-    const env = zenv(
-      {
-        NEXT_PUBLIC_FOO: str(),
-        NEXT_PUBLIC_BAR: num(),
-      },
-      { nextPublic: { NEXT_PUBLIC_FOO: 'foo', NEXT_PUBLIC_BAR: '888' } },
-    )
+    const env = zenv({
+      NEXT_PUBLIC_FOO: { zodType: str(), value: 'foo' },
+      NEXT_PUBLIC_BAR: { zodType: num(), value: '888' },
+    })
     expect(env).toStrictEqual({
       NEXT_PUBLIC_FOO: 'foo',
       NEXT_PUBLIC_BAR: 888,

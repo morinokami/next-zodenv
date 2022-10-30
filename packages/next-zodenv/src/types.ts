@@ -4,10 +4,19 @@ type Environment = Record<string, string | undefined>
 
 type ZodType<TOut = unknown, TIn = unknown> = z.ZodType<TOut, z.ZodTypeDef, TIn>
 
-export type Schema = Record<string, ZodType>
+type NextPublic = {
+  zodType: ZodType
+  value: string | undefined
+}
 
-export type ParsedSchema<Validators extends Schema> = {
-  [K in keyof Validators]: z.infer<Validators[K]>
+export type Schema = Record<string, ZodType | NextPublic>
+
+export type ParsedSchema<S extends Schema> = {
+  [K in keyof S]: S[K] extends ZodType
+    ? z.infer<S[K]>
+    : S[K] extends NextPublic
+    ? z.infer<S[K]['zodType']>
+    : never
 }
 
 export type ZodErrors = Record<string, ZodIssue[]>
