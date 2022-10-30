@@ -1,6 +1,6 @@
 {
   "name": "next-zodenv",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "author": "Shinya Fujino <shf0811@gamil.com> (https://github.com/morinokami)",
   "description": "Safe environment variables for Next.js, powered by Zod",
   "license": "MIT",
