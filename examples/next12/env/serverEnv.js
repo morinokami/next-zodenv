@@ -5,7 +5,7 @@ const { publicEnv } = require('./publicEnv')
 
 module.exports.serverEnv = {
   ...publicEnv,
-  ...zenv(z.object({
+  ...zenv({
     FOO: z.string(),
-  })),
+  }),
 }

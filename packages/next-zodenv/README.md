@@ -32,11 +32,11 @@ You can define a schema for your environment variables:
 import { zenv } from 'next-zodenv'
 import { z } from 'zod'
 
-const env = zenv(z.object({
+const env = zenv({
   FOO: z.string(),
   PORT: z.preprocess(Number, z.number().int().gte(1).lte(65535)),
   API_URL: z.string().url(),
-}))
+})
 
 env.FOO             // string
 env.PORT            // number (1-65535)
@@ -50,13 +50,12 @@ For simple cases like the above, next-zodenv offers built-in validators defined 
 
 ```ts
 import { zenv, str, port, url } from 'next-zodenv'
-import { z } from 'zod'
 
-const env = zenv(z.object({
+const env = zenv({
   FOO: str(),
   PORT: port(),
   API_URL: url(),
-}))
+})
 ```
 
 The complete list of built-in validators is as follows:
@@ -72,13 +71,13 @@ Validator | Zod schema
 
 ### Next.js
 
-In order to expose environment variables to the browser in Next.js, you need to pass the `nextPublic` property to `zenv` like this:
+In order to expose environment variables to the browser in Next.js, you need to pass the `nextPublic` option to `zenv` like this:
 
 ```ts
 const env = zenv(
-  z.object({
+  {
     NEXT_PUBLIC_VAR: z.string(),
-  }),
+  },
   {
     nextPublic: {
       NEXT_PUBLIC_VAR: process.env.NEXT_PUBLIC_VAR,
